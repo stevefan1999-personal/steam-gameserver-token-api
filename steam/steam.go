@@ -23,20 +23,8 @@ var e = log.New(os.Stderr, "ERROR: ", logFormat)
 
 var apiKey string
 
-func mustEnv(envVar string) (env string, err error) {
-	env = os.Getenv(envVar)
-	if env == "" {
-		return "", fmt.Errorf("need %s environment variable", envVar)
-	}
-	return env, nil
-}
-
-func init() {
-	var err error
-	apiKey, err = mustEnv("STEAM_WEB_API_KEY")
-	if err != nil {
-		e.Fatal(err)
-	}
+func SetSteamAPIKey(s string) {
+	apiKey = s
 }
 
 // Steam returns a JSON { response: } object, which wraps all return values.
